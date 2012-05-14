@@ -2,12 +2,25 @@
 <html ng-app>
 <head>
   <script src="http://code.angularjs.org/angular-1.0.0rc8.js"></script>
+  <script src="script/todo.js"></script>
+  <link rel="stylesheet" href="style/todo.css">
   <title></title>
 </head>
 <body>
-<label>Name:</label>
-<input type="text" ng-model="yourName" placeholder="Enter a name here">
-<hr>
-<h1>Hello World from AngularJS by {{yourName}}!</h1>
+<h2>Todo</h2>
+<div ng-controller="TodoCtrl">
+<span>{{remaining()}} of {{todos.length}} remaining</span>
+  [ <a href="" ng-click="archive()">archive</a> ]
+  <ul class="unstyled">
+	<li ng-repeat="todo in todos">
+	  <input type="checkbox" ng-model="todo.done">
+	  <span class="done-{{todo.done}}">{{todo.text}}</span>
+	</li>
+  </ul>
+  <form ng-submit="addTodo()">
+	<input type="text" ng-model="todoText" size="30" placeholder="add new todo here">
+	<input class="btn-primary" type="submit" value="add">
+  </form>
+</div>
 </body>
 </html>
